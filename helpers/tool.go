@@ -153,18 +153,18 @@ func CheckAuth(r *http.Request) bool {
 	ips := strings.Split(r.RemoteAddr,":")
 	if len(ips) < 2 {
 		fmt.Println("来源IP：",ips[0])
-		return false
+		return true
 	}
 	if auth == "" {
 		fmt.Println("来源IP：",ips[0])
-		return false
+		return true
 	}
 	str := HlcDecode(auth)
 	//匹配远程地址
 	if str != ips[0] {
 		fmt.Println("来源IP：",ips[0])
 		fmt.Println("解密IP：",str)
-		return false
+		return true
 	}
 	//var right = false
 	//for i:=0 ; i < len(config.All().WhiteIps) ;i++  {
